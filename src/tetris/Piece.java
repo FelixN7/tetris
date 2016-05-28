@@ -3,12 +3,12 @@ package tetris;
 import java.awt.Color;
 
 public abstract class Piece {
-	private Color color;
-	private int nbRow;
-	private int nbCol;
-	private int rotation;
-	private CaseState [][] piecesCases;
-	private Couple coord;
+	protected Color color;
+	protected int nbRow;
+	protected int nbCol;
+	protected int rotation;
+	protected Case [][] piecesCases;
+	protected Couple coord;
 	
 	public void moveR(Grid grid){
 		
