@@ -25,6 +25,14 @@ public class Couple {
 		return a>=x && b>=y;
 	}
 
+	public void setFirst(int a) {
+		this.a = a;
+	}
+
+	public void setSecond(int b) {
+		this.b = b;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
