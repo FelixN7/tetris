@@ -16,6 +16,14 @@ public class Couple {
 	public int second(){
 		return b;
 	}
+	
+	public boolean inf(int x,int y){
+		return a<x && b<y;
+	}
+	
+	public boolean sup(int x, int y){
+		return a>=x && b>=y;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
