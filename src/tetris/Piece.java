@@ -10,12 +10,63 @@ public abstract class Piece {
 	protected Case [][] piecesCases;
 	protected Couple coord;
 	
+	//TODO Vérifier si "Case [][] piecesCases" peut servir (ou si ça DOIT servir)
 	public void moveR(Grid grid){
-		//TODO remplir
+		//Vérification si la piece n'est pas sur le bord droit
+		if((coord.second()+nbCol)< grid.getNbCol()){
+			//Vérification si des cases sont FULL à droite de USED
+			boolean allowed = true;
+			for(int r=0 ; r<nbRow ; r++){
+				for(int c=0 ; c<nbCol ; c++){
+					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+					Case right = grid.getCase(coord.first()+r, coord.second()+c+1);
+					if((actual.getState()==CaseState.USED) && (right.getState()==CaseState.FULL)) {
+						allowed = false;
+					}
+				}
+			}
+			if(allowed){
+				for(int r=0 ; r<nbRow ; r++){
+					for(int c=nbCol-1 ; c>=0 ; c--){
+						Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+						if(actual.getState()==CaseState.USED){
+							grid.setCase(coord.first()+r, coord.second()+c+1, actual);
+							actual.setState(CaseState.EMPTY);
+						}
+					}
+				}
+				coord.setSecond(coord.second()+1);
+			}
+		}
 	}
 	
 	public void moveL(Grid grid){
-		//TODO remplir
+		//Vérification si la piece n'est pas sur le bord gauche
+		if(coord.second() > 0){
+			//Vérification si des cases sont FULL à gauche de USED
+			boolean allowed = true;
+			for(int r=0 ; r<nbRow ; r++){
+				for(int c=0 ; c<nbCol ; c++){
+					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+					Case left = grid.getCase(coord.first()+r, coord.second()+c-1);
+					if((actual.getState()==CaseState.USED) && (left.getState()==CaseState.FULL)) {
+						allowed = false;
+					}
+				}
+			}
+			if(allowed){
+				for(int r=0 ; r<nbRow ; r++){
+					for(int c=0 ; c<nbCol ; c++){
+						Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+						if(actual.getState()==CaseState.USED){
+							grid.setCase(coord.first()+r, coord.second()+c-1, actual);
+							actual.setState(CaseState.EMPTY);
+						}
+					}
+				}
+				coord.setSecond(coord.second()-1);
+			}
+		}
 	}
 	
 	/**
@@ -26,7 +77,7 @@ public abstract class Piece {
 	 */
 	//vérif que la grille est vide en dessous du masque à chaque endroits où il y a une case pleine.
 	//si ok, parcours des lignes puis des colonnes pour déplacer l'état de la case au dessus,
-	//uniquement si elle est USED.!! Modif de la couleur de la case.
+	//uniquement si elle est USED.
 	//Sinon, Poser la piece et la fixer sur la grille.
 	public boolean down(Grid grid){
 		boolean isDown = true;
@@ -35,7 +86,9 @@ public abstract class Piece {
 			//On vérifie s'il n'y a pas de cases FULL sous chaque case USED de la piece.
 			for(int r=0 ; r<nbRow ; r++){
 				for(int c=0 ; c<nbCol ; c++){
-					if(grid.getCaseState(coord.first()+r-1,coord.second()+c) == CaseState.FULL) isDown = false;
+					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+					Case under = grid.getCase(coord.first()+r-1, coord.second()+c);
+					if((actual.getState()==CaseState.USED) && (under.getState()==CaseState.FULL)) isDown = false;
 				}
 			}
 		}
@@ -44,11 +97,10 @@ public abstract class Piece {
 		if(isDown){
 				for(int r=0 ; r<nbRow ; r++){
 					for(int c=0 ; c<nbCol ; c++){
-						if(grid.getCaseState(coord.first()+r, coord.second()+c)==CaseState.USED){
-							//TODO tout changer
-							//grid.getCaseState(
-							//Besoin de changer Grid pour pouvoir modifier (et accéder) les Cases 
-							//(changer couleur et état)
+						Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+						if(actual.getState()==CaseState.USED){
+							grid.setCase(coord.first()+r-1, coord.second()+c, actual);
+							actual.setState(CaseState.EMPTY);
 						}
 					}
 				}
@@ -56,7 +108,14 @@ public abstract class Piece {
 			}
 		//Sinon, on la fixe à la grille.
 		else{
-			//TODO remplir
+			for(int r=0 ; r<nbRow ; r++){
+				for(int c=0 ; c<nbCol ; c++){
+					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+					if(actual.getState()==CaseState.USED){
+						actual.setState(CaseState.FULL);
+					}
+				}
+			}
 		}
 		return isDown;
 	}

@@ -21,15 +21,15 @@ public class Grid {
 		}
 	}
 
-	public CaseState getCaseState(int rowNumber, int ColNumber){
-		return this.grid[rowNumber][ColNumber].getState();
+	public Case getCase(int rowNumber, int ColNumber){
+		return this.grid[rowNumber][ColNumber];
 	}
 
-	public CaseState getCaseState(Couple couple){
-		return this.grid[couple.first()][couple.second()].getState();
+	public Case getCase(Couple couple){
+		return this.grid[couple.first()][couple.second()];
 	}
 
-	public void setCase(int rowNumber, int ColNumber,Case c){
+	public void setCase(int rowNumber, int ColNumber, Case c){
 		this.grid[rowNumber][ColNumber] = c;
 	}
 
@@ -49,7 +49,7 @@ public class Grid {
 		boolean b = true;
 		for(Couple couple : cases){
 			if(couple.inf(nbRow, nbCol) && couple.sup(0, 0)){
-				b=b && getCaseState(couple)==CaseState.EMPTY;
+				b=b && getCase(couple).getState()==CaseState.EMPTY;
 			}else{
 				b=false;
 			}
