@@ -101,7 +101,9 @@ public class L extends Piece {
 		mask[0][0]= new Case(CaseState.EMPTY, color);
 		mask[0][1]= new Case(CaseState.FULL, color);
 		
-		mask[1][0]= new Case(CaseState.EMPTY, color);		
+		mask[1][0]= new Case(CaseState.EMPTY, color);	
+		mask[1][1]= new Case(CaseState.FULL, color);
+		
 		mask[2][0]= new Case(CaseState.FULL, color);
 		mask[2][1]= new Case(CaseState.FULL, color);
 		
@@ -190,6 +192,7 @@ public class L extends Piece {
 		}
 	}
 	
+	//Passer en X-1 ???
 	private void rot3_0 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
