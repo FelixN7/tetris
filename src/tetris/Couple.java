@@ -1,6 +1,7 @@
 package tetris;
 
 public class Couple {
+
 	private int a;
 	private int b;
 	
@@ -49,5 +50,8 @@ public class Couple {
 		return true;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "(" + a + ", " + b + ")";
+	}
 }

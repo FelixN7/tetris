@@ -10,12 +10,29 @@ public abstract class Piece {
 	protected Case [][] piecesCases;
 	protected Couple coord;
 	
+	
+	public int getNbRow() {
+		return nbRow;
+	}
+
+	public int getNbCol() {
+		return nbCol;
+	}
+
+	public Case[][] getPiecesCases() {
+		return piecesCases;
+	}
+
+	public Couple getCoord() {
+		return coord;
+	}
+	
 	//TODO Vérifier si "Case [][] piecesCases" peut servir (ou si ça DOIT servir)
 	public void moveR(Grid grid){
 		//Vérification si la piece n'est pas sur le bord droit
 		if((coord.second()+nbCol)< grid.getNbCol()){
 			//Vérification si des cases sont FULL à droite de USED
-			boolean allowed = true;
+			boolean allowed = nbRow>0 && nbCol>0;
 			for(int r=0 ; r<nbRow ; r++){
 				for(int c=0 ; c<nbCol ; c++){
 					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
@@ -25,6 +42,7 @@ public abstract class Piece {
 					}
 				}
 			}
+			System.out.println(allowed);
 			if(allowed){
 				for(int r=0 ; r<nbRow ; r++){
 					for(int c=nbCol-1 ; c>=0 ; c--){
@@ -39,12 +57,12 @@ public abstract class Piece {
 			}
 		}
 	}
-	
+
 	public void moveL(Grid grid){
 		//Vérification si la piece n'est pas sur le bord gauche
 		if(coord.second() > 0){
 			//Vérification si des cases sont FULL à gauche de USED
-			boolean allowed = true;
+			boolean allowed = nbRow>0 && nbCol>0;
 			for(int r=0 ; r<nbRow ; r++){
 				for(int c=0 ; c<nbCol ; c++){
 					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
@@ -54,6 +72,7 @@ public abstract class Piece {
 					}
 				}
 			}
+			System.out.println(allowed);
 			if(allowed){
 				for(int r=0 ; r<nbRow ; r++){
 					for(int c=0 ; c<nbCol ; c++){

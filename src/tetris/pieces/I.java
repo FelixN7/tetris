@@ -41,7 +41,15 @@ public class I extends Piece {
 
 	@Override
 	public void rotationL(Grid grid) {
-		rotationR(grid);
+		switch (rotation){
+		case 0:
+			rot0_1(grid);
+			break;
+		case 1:
+			rot1_0(grid);
+			break;
+		default:
+		}
 	}
 
 	private void rot0(Color color) {
@@ -49,11 +57,11 @@ public class I extends Piece {
 		nbCol = 1;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
-		mask[1][0]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
+		mask[1][0]= new Case(CaseState.USED, color);
 		
-		mask[2][0]= new Case(CaseState.FULL, color);
-		mask[3][0]= new Case(CaseState.FULL, color);
+		mask[2][0]= new Case(CaseState.USED, color);
+		mask[3][0]= new Case(CaseState.USED, color);
 		
 		piecesCases = mask;
 	}
@@ -63,11 +71,11 @@ public class I extends Piece {
 		nbCol = 4;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
-		mask[0][1]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
+		mask[0][1]= new Case(CaseState.USED, color);
 		
-		mask[0][2]= new Case(CaseState.FULL, color);
-		mask[0][3]= new Case(CaseState.FULL, color);
+		mask[0][2]= new Case(CaseState.USED, color);
+		mask[0][3]= new Case(CaseState.USED, color);
 		
 		piecesCases = mask;
 	}

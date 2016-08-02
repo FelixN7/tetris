@@ -1,9 +1,7 @@
 package tetris;
 
+import java.awt.Color;
 import java.util.Vector;
-
-import tetris.Case;
-import tetris.CaseState;
 
 public class Grid {
 	private Case [][] grid;
@@ -13,10 +11,10 @@ public class Grid {
 	public Grid(int nbRow, int nbCol) {
 		this.nbRow = nbRow;
 		this.nbCol = nbCol;
-		this.grid = new Case [nbRow] [nbCol];
+		this.grid = new Case[nbRow][nbCol];
 		for(int i=0; i<nbRow;i++){
 			for(int j=0; j<nbCol;j++){
-				this.grid[i][j].setState(CaseState.EMPTY);
+				this.grid[i][j] = new Case(CaseState.EMPTY, Color.white);
 			}
 		}
 	}

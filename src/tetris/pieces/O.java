@@ -28,11 +28,11 @@ public class O extends Piece {
 		nbCol = 2;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
-		mask[0][1]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
+		mask[0][1]= new Case(CaseState.USED, color);
 		
-		mask[1][0]= new Case(CaseState.FULL, color);
-		mask[1][1]= new Case(CaseState.FULL, color);
+		mask[1][0]= new Case(CaseState.USED, color);
+		mask[1][1]= new Case(CaseState.USED, color);
 		
 		piecesCases = mask;
 	}

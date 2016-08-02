@@ -27,6 +27,4 @@ public class Case {
 		this.colorCase = colorCase;
 	}
 	
-	
-	
 }

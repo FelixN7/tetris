@@ -76,14 +76,14 @@ public class J extends Piece {
 		nbCol = 2;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
-		mask[0][1]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
+		mask[0][1]= new Case(CaseState.USED, color);
 		
 		mask[1][0]= new Case(CaseState.EMPTY, color);
-		mask[1][1]= new Case(CaseState.FULL, color);
+		mask[1][1]= new Case(CaseState.USED, color);
 		
 		mask[2][0]= new Case(CaseState.EMPTY, color);
-		mask[2][1]= new Case(CaseState.FULL, color);
+		mask[2][1]= new Case(CaseState.USED, color);
 		
 		piecesCases = mask;
 	}
@@ -93,11 +93,11 @@ public class J extends Piece {
 		nbCol = 3;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
-		mask[0][1]= new Case(CaseState.FULL, color);
-		mask[0][2]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
+		mask[0][1]= new Case(CaseState.USED, color);
+		mask[0][2]= new Case(CaseState.USED, color);
 		
-		mask[1][0]= new Case(CaseState.FULL, color);
+		mask[1][0]= new Case(CaseState.USED, color);
 		mask[1][1]= new Case(CaseState.EMPTY, color);
 		mask[1][2]= new Case(CaseState.EMPTY, color);
 		
@@ -109,14 +109,14 @@ public class J extends Piece {
 		nbCol = 2;
 		Case [][] mask = new Case [nbRow][nbCol];
 		
-		mask[0][0]= new Case(CaseState.FULL, color);
+		mask[0][0]= new Case(CaseState.USED, color);
 		mask[0][1]= new Case(CaseState.EMPTY, color);
 		
-		mask[1][0]= new Case(CaseState.FULL, color);
+		mask[1][0]= new Case(CaseState.USED, color);
 		mask[1][1]= new Case(CaseState.EMPTY, color);
 		
-		mask[2][0]= new Case(CaseState.FULL, color);
-		mask[2][1]= new Case(CaseState.FULL, color);
+		mask[2][0]= new Case(CaseState.USED, color);
+		mask[2][1]= new Case(CaseState.USED, color);
 		
 		piecesCases= mask;
 	}
@@ -128,11 +128,11 @@ public class J extends Piece {
 		
 		mask[0][0]= new Case(CaseState.EMPTY, color);
 		mask[0][1]= new Case(CaseState.EMPTY, color);
-		mask[0][2]= new Case(CaseState.FULL, color);
+		mask[0][2]= new Case(CaseState.USED, color);
 		
-		mask[1][0]= new Case(CaseState.FULL, color);
-		mask[1][1]= new Case(CaseState.FULL, color);
-		mask[1][2]= new Case(CaseState.FULL, color);
+		mask[1][0]= new Case(CaseState.USED, color);
+		mask[1][1]= new Case(CaseState.USED, color);
+		mask[1][2]= new Case(CaseState.USED, color);
 		
 		piecesCases= mask;
 	}
