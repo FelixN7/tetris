@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import tetris.Case;
 import tetris.CaseState;
@@ -51,25 +52,74 @@ public class TetrisView {
 			for(int j=0 ; j<tailleColonne ; j++){
 				cells[i][j] = new JLabel();
 				this.container.add(cells[i][j]);
-				cells[i][j].setIcon(images.get(Color.white));
+				Case cell = tetris.getGrid().getCase(i,j);
+				if(cell.getState() == CaseState.EMPTY){
+					cells[i][j].setIcon(images.get(Color.white));
+				}else{
+					cells[i][j].setIcon(images.get(cell.getColorCase()));
+				}
+
+				//cells[i][j].setIcon(images.get(Color.white));
 			}
 		}
 	}
 
 	public void refreshCell(int r, int c){
-		Case cell = tControl.getTetris().getGrid().getCase(r,c);
-		if(cell.getState() == CaseState.EMPTY){
-			cells[r][c].setIcon(images.get(Color.white));
-		}else{
-			cells[r][c].setIcon(images.get(cell.getColorCase()));
-		}
+		final Case cell = tControl.getTetris().getGrid().getCase(r,c);
+		final JLabel current = cells[r][c];
+		SwingUtilities.invokeLater(new Runnable() {	
+			public void run() {
+				if(cell.getState() == CaseState.EMPTY){
+					current.setIcon(images.get(Color.white));
+				}else{
+					current.setIcon(images.get(cell.getColorCase()));
+				}
+			}
+		});
 	}
+
+
 
 	public void refresh(){
 		for(int i=0 ; i<tailleLigne ; i++){
 			for(int j=0 ; j<tailleColonne ; j++){
 				refreshCell(i, j);
 			}
+		}
+	}
+
+
+	private static void affGrid(Grid grid){
+		for(int i=0; i<grid.getNbRow();i++){
+			for (int j=0;j<grid.getNbCol();j++){
+				System.out.println("("+ i + "," + 
+						j + ") = " + grid.getCase(i, j).getState());
+			}
+		}
+		System.out.println("\n");
+	}
+
+	private static void bouger(Tetris tetris, TetrisView tView){
+		try {
+			Thread.sleep(5000);
+			tetris.moveR();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.down();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.moveL();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.down();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.moveR();
+			tView.refresh();
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+
 		}
 	}
 
@@ -83,48 +133,22 @@ public class TetrisView {
 				fenetre.setSize(new Dimension(200, 200));
 				Container contenu = fenetre.getContentPane();
 				contenu.removeAll();
-				Tetris tetris = new Tetris(new Grid(5, 5));
-				TetrisView tView = new TetrisView(tetris, contenu);
+				final Tetris tetris = new Tetris(new Grid(5, 5));
+				final TetrisView tView = new TetrisView(tetris, contenu);
 				Piece p = new I(1, Color.blue, new Couple(4,0));
 				tetris.addPiece(p);
-				System.out.println(tetris.getPieceCourante().getCoord());
-				System.out.println(tetris.getGrid().getCase(4, 1).getState());
+				affGrid(tetris.getGrid());
 				tView.refresh();
 
+				Thread action = new Thread(new Runnable() {
 
-				//try {
-					//Thread.sleep(5000);
-					tetris.moveR();
-					System.out.println(tetris.getPieceCourante().getCoord());
-					System.out.println(tetris.getGrid().getCase(4, 4).getState());
-					tView.refresh();
-					//Thread.sleep(2000);
-					/*tetris.down();
-					System.out.println(tetris.getPieceCourante().getCoord());
-					System.out.println(tetris.getGrid().getCase(3, 2).getState());
-					tView.refresh();
-					//Thread.sleep(2000);
-					tetris.moveL();
-					System.out.println(tetris.getPieceCourante().getCoord());
-					System.out.println(tetris.getGrid().getCase(3, 1).getState());
-					tView.refresh();
-					//Thread.sleep(2000);
-					tetris.down();
-					System.out.println(tetris.getPieceCourante().getCoord());
-					System.out.println(tetris.getGrid().getCase(2, 1).getState());
-					tView.refresh();
-					//Thread.sleep(2000);
-					tetris.moveR();
-					System.out.println(tetris.getPieceCourante().getCoord());
-					System.out.println(tetris.getGrid().getCase(2, 2).getState());
-					tView.refresh();
-
-				/*} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
-
+					public void run() {
+						bouger(tetris,tView);		
+					}
+				});
+				action.start();
 			}
+
 		});
 	}
 

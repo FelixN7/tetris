@@ -12,5 +12,8 @@
 hs_err_pid*
 
 #tous les fichiers caches
-.*
+.project
+.classpath
+
+#les fichiers binaires
 /bin/

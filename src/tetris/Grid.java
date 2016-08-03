@@ -28,7 +28,7 @@ public class Grid {
 	}
 
 	public void setCase(int rowNumber, int ColNumber, Case c){
-		this.grid[rowNumber][ColNumber] = c;
+		this.grid[rowNumber][ColNumber] = new Case(c.getState(), c.getColorCase());
 	}
 
 	public void setCase(Couple couple, Case c){
