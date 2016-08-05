@@ -25,7 +25,7 @@ public class I extends Piece {
 		this.coord = coord;
 		this.rotation=rotation;
 	}
-	
+
 	@Override
 	public void rotationR(Grid grid) {
 		switch (rotation){
@@ -56,30 +56,30 @@ public class I extends Piece {
 		nbRow = 4;
 		nbCol = 1;
 		Case [][] mask = new Case [nbRow][nbCol];
-		
+
 		mask[0][0]= new Case(CaseState.USED, color);
 		mask[1][0]= new Case(CaseState.USED, color);
-		
+
 		mask[2][0]= new Case(CaseState.USED, color);
 		mask[3][0]= new Case(CaseState.USED, color);
-		
+
 		piecesCases = mask;
 	}
-	
+
 	private void rot1(Color color) {
 		nbRow = 1;
 		nbCol = 4;
 		Case [][] mask = new Case [nbRow][nbCol];
-		
+
 		mask[0][0]= new Case(CaseState.USED, color);
 		mask[0][1]= new Case(CaseState.USED, color);
-		
+
 		mask[0][2]= new Case(CaseState.USED, color);
 		mask[0][3]= new Case(CaseState.USED, color);
-		
+
 		piecesCases = mask;
 	}
-	
+
 	private void rot0_1 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
@@ -95,6 +95,10 @@ public class I extends Piece {
 		cases.add(new Couple(x, y+3));
 		cases.add(new Couple(x+1, y+3));
 		cases.add(new Couple(x+2, y+3));
+
+		//TODO commenter la ligne en dessous
+		System.out.println(grid.caseFree(cases));
+
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=1;
@@ -108,7 +112,7 @@ public class I extends Piece {
 			grid.setCase(x+3,y, new Case(CaseState.EMPTY, color));
 		}
 	}
-	
+
 	private void rot1_0 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
@@ -124,6 +128,9 @@ public class I extends Piece {
 		cases.add(new Couple(x+3, y+2));
 		cases.add(new Couple(x+1, y+3));
 		cases.add(new Couple(x+2, y+3));
+		//TODO commenter la ligne en dessous
+		System.out.println(grid.caseFree(cases));
+
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=0;

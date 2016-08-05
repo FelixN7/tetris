@@ -9,8 +9,8 @@ public abstract class Piece {
 	protected int rotation;
 	protected Case [][] piecesCases;
 	protected Couple coord;
-	
-	
+
+
 	public int getNbRow() {
 		return nbRow;
 	}
@@ -26,13 +26,14 @@ public abstract class Piece {
 	public Couple getCoord() {
 		return coord;
 	}
-	
+
 	//TODO Vérifier si "Case [][] piecesCases" peut servir (ou si ça DOIT servir)
 	public void moveR(Grid grid){
+		boolean allowed;
 		//Vérification si la piece n'est pas sur le bord droit
 		if((coord.second()+nbCol)< grid.getNbCol()){
 			//Vérification si des cases sont FULL à droite de USED
-			boolean allowed = nbRow>0 && nbCol>0;
+			allowed = nbRow>0 && nbCol>0;
 			for(int r=0 ; r<nbRow ; r++){
 				for(int c=0 ; c<nbCol ; c++){
 					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
@@ -42,7 +43,7 @@ public abstract class Piece {
 					}
 				}
 			}
-			System.out.println(allowed);
+			//maj de la grille
 			if(allowed){
 				for(int r=0 ; r<nbRow ; r++){
 					for(int c=nbCol-1 ; c>=0 ; c--){
@@ -55,14 +56,19 @@ public abstract class Piece {
 				}
 				coord.setSecond(coord.second()+1);
 			}
+		}else{
+			//piece coince sur la bordure droite
+			allowed = false;
 		}
+		System.out.println(allowed);
 	}
 
 	public void moveL(Grid grid){
+		boolean allowed;
 		//Vérification si la piece n'est pas sur le bord gauche
 		if(coord.second() > 0){
 			//Vérification si des cases sont FULL à gauche de USED
-			boolean allowed = nbRow>0 && nbCol>0;
+			allowed = nbRow>0 && nbCol>0;
 			for(int r=0 ; r<nbRow ; r++){
 				for(int c=0 ; c<nbCol ; c++){
 					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
@@ -72,7 +78,7 @@ public abstract class Piece {
 					}
 				}
 			}
-			System.out.println(allowed);
+			//maj de la grille
 			if(allowed){
 				for(int r=0 ; r<nbRow ; r++){
 					for(int c=0 ; c<nbCol ; c++){
@@ -85,9 +91,13 @@ public abstract class Piece {
 				}
 				coord.setSecond(coord.second()-1);
 			}
+		}else{
+			//piece coince sur la bordure gauche
+			allowed = false;
 		}
+		System.out.println(allowed);
 	}
-	
+
 	/**
 	 * 
 	 * @param grid grille
@@ -107,24 +117,25 @@ public abstract class Piece {
 				for(int c=0 ; c<nbCol ; c++){
 					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
 					Case under = grid.getCase(coord.first()+r-1, coord.second()+c);
-					if((actual.getState()==CaseState.USED) && (under.getState()==CaseState.FULL)) isDown = false;
+					if((actual.getState()==CaseState.USED) && (under.getState()==CaseState.FULL)) 
+						isDown = false;
 				}
 			}
 		}
 		else isDown = false;
 		//S'il y a de la place sous la piece, on la déplace
 		if(isDown){
-				for(int r=0 ; r<nbRow ; r++){
-					for(int c=0 ; c<nbCol ; c++){
-						Case actual = grid.getCase(coord.first()+r, coord.second()+c);
-						if(actual.getState()==CaseState.USED){
-							grid.setCase(coord.first()+r-1, coord.second()+c, actual);
-							actual.setState(CaseState.EMPTY);
-						}
+			for(int r=0 ; r<nbRow ; r++){
+				for(int c=0 ; c<nbCol ; c++){
+					Case actual = grid.getCase(coord.first()+r, coord.second()+c);
+					if(actual.getState()==CaseState.USED){
+						grid.setCase(coord.first()+r-1, coord.second()+c, actual);
+						actual.setState(CaseState.EMPTY);
 					}
 				}
-				coord.setFirst(coord.first()-1);
 			}
+			coord.setFirst(coord.first()-1);
+		}
 		//Sinon, on la fixe à la grille.
 		else{
 			for(int r=0 ; r<nbRow ; r++){
@@ -136,14 +147,15 @@ public abstract class Piece {
 				}
 			}
 		}
+		System.out.println(isDown);
 		return isDown;
 	}
-	
-	
+
+
 	//R = Right = rotation horaire
 	public abstract void rotationR(Grid grid);
-	
+
 	//L = Left = rotation anti-horaire
 	public abstract void rotationL(Grid grid);
-	
+
 }

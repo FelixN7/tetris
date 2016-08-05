@@ -16,24 +16,30 @@ public class O extends Piece {
 		this.rotation=0;
 		rot0(color);
 	}
-	
-	@Override
-	public void rotationR(Grid grid) {}
 
 	@Override
-	public void rotationL(Grid grid) {}
+	public void rotationR(Grid grid) {
+		//TODO commenter la ligne en dessous
+		System.out.println("true");
+	}
+
+	@Override
+	public void rotationL(Grid grid) {
+		//TODO commenter la ligne en dessous
+		System.out.println("true");
+	}
 
 	private void rot0(Color color) {
 		nbRow = 2;
 		nbCol = 2;
 		Case [][] mask = new Case [nbRow][nbCol];
-		
+
 		mask[0][0]= new Case(CaseState.USED, color);
 		mask[0][1]= new Case(CaseState.USED, color);
-		
+
 		mask[1][0]= new Case(CaseState.USED, color);
 		mask[1][1]= new Case(CaseState.USED, color);
-		
+
 		piecesCases = mask;
 	}
 }

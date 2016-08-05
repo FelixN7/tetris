@@ -18,7 +18,7 @@ import tetris.Couple;
 import tetris.Grid;
 import tetris.Piece;
 import tetris.Tetris;
-import tetris.pieces.I;
+import tetris.pieces.J;
 
 public class TetrisView {
 
@@ -30,7 +30,7 @@ public class TetrisView {
 		images.put(Color.green, new ImageIcon("ressources/green.png"));
 		images.put(Color.cyan, new ImageIcon("ressources/cyan.png"));
 		images.put(Color.yellow, new ImageIcon("ressources/yellow.png"));
-		images.put(Color.pink, new ImageIcon("ressources/purple.png"));
+		images.put(Color.pink, new ImageIcon("ressources/pink.png"));
 	}
 
 
@@ -101,20 +101,26 @@ public class TetrisView {
 
 	private static void bouger(Tetris tetris, TetrisView tView){
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(2000);
+			tetris.rotationR();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.rotationR();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.rotationR();
+			tView.refresh();
+			Thread.sleep(2000);
+			tetris.rotationL();
+			tView.refresh();
+			Thread.sleep(1000);
 			tetris.moveR();
 			tView.refresh();
-			Thread.sleep(2000);
-			tetris.down();
-			tView.refresh();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			tetris.moveL();
 			tView.refresh();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			tetris.down();
-			tView.refresh();
-			Thread.sleep(2000);
-			tetris.moveR();
 			tView.refresh();
 
 		} catch (InterruptedException e) {
@@ -133,11 +139,12 @@ public class TetrisView {
 				fenetre.setSize(new Dimension(200, 200));
 				Container contenu = fenetre.getContentPane();
 				contenu.removeAll();
-				final Tetris tetris = new Tetris(new Grid(5, 5));
+				Grid grid = new Grid(5, 5);
+				//grid.setCase(1, 3, new Case(CaseState.FULL, Color.yellow));
+				final Tetris tetris = new Tetris(grid);
 				final TetrisView tView = new TetrisView(tetris, contenu);
-				Piece p = new I(1, Color.blue, new Couple(4,0));
+				Piece p = new J(2, Color.blue, new Couple(1,2));
 				tetris.addPiece(p);
-				affGrid(tetris.getGrid());
 				tView.refresh();
 
 				Thread action = new Thread(new Runnable() {
