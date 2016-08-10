@@ -77,7 +77,6 @@ public class S extends Piece {
 		piecesCases = mask;
 	}
 	
-	//TODO a remplacer
 	private void rot0_1 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
@@ -107,7 +106,6 @@ public class S extends Piece {
 		}
 	}
 
-	//TODO a remplacer
 	private void rot1_0 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();

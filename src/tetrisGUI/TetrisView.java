@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -47,6 +48,9 @@ public class TetrisView {
 		cells = new JLabel[tailleLigne][tailleColonne];
 		tControl = new TetrisControler(tetris, this);
 		this.container.setLayout(new GridLayout(tailleLigne, tailleColonne));
+		
+		this.container.addKeyListener(tControl);
+		this.container.setFocusable(true);
 
 		for(int i=tailleLigne-1 ; i>=0 ; i--){
 			for(int j=0 ; j<tailleColonne ; j++){
@@ -62,6 +66,10 @@ public class TetrisView {
 				//cells[i][j].setIcon(images.get(Color.white));
 			}
 		}
+	}
+	
+	public TetrisControler getTControl() {
+		return this.tControl;
 	}
 
 	public void refreshCell(int r, int c){
@@ -140,20 +148,19 @@ public class TetrisView {
 				Container contenu = fenetre.getContentPane();
 				contenu.removeAll();
 				Grid grid = new Grid(5, 5);
-				//grid.setCase(1, 3, new Case(CaseState.FULL, Color.yellow));
 				final Tetris tetris = new Tetris(grid);
 				final TetrisView tView = new TetrisView(tetris, contenu);
-				Piece p = new J(2, Color.blue, new Couple(1,2));
+				Piece p = new J(2, Color.blue, new Couple(2,0));
 				tetris.addPiece(p);
 				tView.refresh();
 
-				Thread action = new Thread(new Runnable() {
-
-					public void run() {
-						bouger(tetris,tView);		
-					}
-				});
-				action.start();
+//				Thread action = new Thread(new Runnable() {
+//
+//					public void run() {
+//						bouger(tetris,tView);		
+//					}
+//				});
+//				action.start();
 			}
 
 		});

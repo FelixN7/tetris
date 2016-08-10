@@ -70,7 +70,6 @@ public class J extends Piece {
 		}
 	}
 
-	//TODO FULL ou bien USED dans le masque ?????
 	private void rot0(Color color) {
 		nbRow = 3;
 		nbCol = 2;
@@ -145,8 +144,7 @@ public class J extends Piece {
 		cases.add(new Couple(x, y+2));
 		cases.add(new Couple(x+1, y+2));
 		cases.add(new Couple(x+2, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+//		System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=1;
@@ -166,8 +164,7 @@ public class J extends Piece {
 		cases.add(new Couple(x+2, y));
 		cases.add(new Couple(x+1, y+1));
 		cases.add(new Couple(x+2, y+1));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+//		System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=2;
@@ -188,8 +185,7 @@ public class J extends Piece {
 		cases.add(new Couple(x, y+2));
 		cases.add(new Couple(x+1, y+2));
 		cases.add(new Couple(x+2, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+//		System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=3;
@@ -212,8 +208,7 @@ public class J extends Piece {
 		cases.add(new Couple(x+2, y));
 		cases.add(new Couple(x, y+1));
 		cases.add(new Couple(x+2, y+1));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+		//System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=0;
@@ -236,8 +231,7 @@ public class J extends Piece {
 		cases.add(new Couple(x+2, y+1));
 		cases.add(new Couple(x+1, y+2));
 		cases.add(new Couple(x+2, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+		//System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=0;
@@ -257,8 +251,7 @@ public class J extends Piece {
 		cases.add(new Couple(x, y+1));
 		cases.add(new Couple(x+1, y+1));
 		cases.add(new Couple(x, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+		//System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=1;
@@ -279,8 +272,7 @@ public class J extends Piece {
 		cases.add(new Couple(x+2, y));
 		cases.add(new Couple(x+2, y+1));
 		cases.add(new Couple(x+2, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+		//System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=2;
@@ -304,8 +296,7 @@ public class J extends Piece {
 		cases.add(new Couple(x, y+2));
 		cases.add(new Couple(x+1, y+2));
 		cases.add(new Couple(x+2, y+2));
-		//TODO commenter la ligne en dessous
-		System.out.println(grid.caseFree(cases));
+		//System.out.println(grid.caseFree(cases));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=3;
