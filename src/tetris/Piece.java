@@ -2,6 +2,8 @@ package tetris;
 
 import java.awt.Color;
 
+import utilities.Couple;
+
 public abstract class Piece {
 	protected Color color;
 	protected int nbRow;

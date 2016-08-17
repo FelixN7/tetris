@@ -3,6 +3,8 @@ package tetris;
 import java.awt.Color;
 import java.util.Vector;
 
+import utilities.Couple;
+
 public class Grid {
 	private Case [][] grid;
 	private int nbRow;

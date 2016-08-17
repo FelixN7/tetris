@@ -1,5 +1,7 @@
 package tetris;
 
+import utilities.Couple;
+
 public class Tetris {
 	private Grid grid;
 	private Piece pieceCourante;
@@ -39,8 +41,8 @@ public class Tetris {
 		this.pieceCourante.moveL(this.grid);
 	}
 
-	public void down(){
-		this.pieceCourante.down(this.grid);
+	public boolean down(){
+		return this.pieceCourante.down(this.grid);
 	}
 
 	public void rotationR(){

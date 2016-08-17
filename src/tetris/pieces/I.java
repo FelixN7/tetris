@@ -5,9 +5,9 @@ import java.util.Vector;
 
 import tetris.Case;
 import tetris.CaseState;
-import tetris.Couple;
 import tetris.Grid;
 import tetris.Piece;
+import utilities.Couple;
 
 public class I extends Piece {
 

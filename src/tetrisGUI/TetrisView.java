@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -15,11 +14,11 @@ import javax.swing.SwingUtilities;
 
 import tetris.Case;
 import tetris.CaseState;
-import tetris.Couple;
 import tetris.Grid;
 import tetris.Piece;
 import tetris.Tetris;
 import tetris.pieces.J;
+import utilities.Couple;
 
 public class TetrisView {
 
@@ -97,6 +96,7 @@ public class TetrisView {
 	}
 
 
+	@SuppressWarnings("unused")
 	private static void affGrid(Grid grid){
 		for(int i=0; i<grid.getNbRow();i++){
 			for (int j=0;j<grid.getNbCol();j++){
@@ -105,36 +105,6 @@ public class TetrisView {
 			}
 		}
 		System.out.println("\n");
-	}
-
-	private static void bouger(Tetris tetris, TetrisView tView){
-		try {
-			Thread.sleep(2000);
-			tetris.rotationR();
-			tView.refresh();
-			Thread.sleep(2000);
-			tetris.rotationR();
-			tView.refresh();
-			Thread.sleep(2000);
-			tetris.rotationR();
-			tView.refresh();
-			Thread.sleep(2000);
-			tetris.rotationL();
-			tView.refresh();
-			Thread.sleep(1000);
-			tetris.moveR();
-			tView.refresh();
-			Thread.sleep(1000);
-			tetris.moveL();
-			tView.refresh();
-			Thread.sleep(1000);
-			tetris.down();
-			tView.refresh();
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-
-		}
 	}
 
 	public static void main(String[] args){
@@ -153,14 +123,6 @@ public class TetrisView {
 				Piece p = new J(2, Color.blue, new Couple(2,0));
 				tetris.addPiece(p);
 				tView.refresh();
-
-//				Thread action = new Thread(new Runnable() {
-//
-//					public void run() {
-//						bouger(tetris,tView);		
-//					}
-//				});
-//				action.start();
 			}
 
 		});

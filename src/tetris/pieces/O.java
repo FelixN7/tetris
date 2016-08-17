@@ -4,9 +4,9 @@ import java.awt.Color;
 
 import tetris.Case;
 import tetris.CaseState;
-import tetris.Couple;
 import tetris.Grid;
 import tetris.Piece;
+import utilities.Couple;
 
 public class O extends Piece {
 
