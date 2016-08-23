@@ -17,7 +17,7 @@ import tetris.CaseState;
 import tetris.Grid;
 import tetris.Piece;
 import tetris.Tetris;
-import tetris.pieces.J;
+import tetris.pieces.T;
 import utilities.Couple;
 
 public class TetrisView {
@@ -120,7 +120,7 @@ public class TetrisView {
 				Grid grid = new Grid(5, 5);
 				final Tetris tetris = new Tetris(grid);
 				final TetrisView tView = new TetrisView(tetris, contenu);
-				Piece p = new J(2, Color.blue, new Couple(2,0));
+				Piece p = new T(2, Color.blue, new Couple(2,0));
 				tetris.addPiece(p);
 				tView.refresh();
 			}
