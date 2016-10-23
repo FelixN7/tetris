@@ -31,6 +31,7 @@ public class TetrisView {
 		images.put(Color.cyan, new ImageIcon("ressources/cyan.png"));
 		images.put(Color.yellow, new ImageIcon("ressources/yellow.png"));
 		images.put(Color.pink, new ImageIcon("ressources/pink.png"));
+		images.put(Color.orange, new ImageIcon("ressources/orange.png"));
 	}
 
 
