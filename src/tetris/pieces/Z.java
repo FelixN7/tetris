@@ -4,7 +4,7 @@ import tetris.Grid;
 import tetris.Piece;
 
 public class Z extends Piece {
-
+	//TODO Completer la classe Z
 	@Override
 	public void rotationR(Grid grid) {
 		// TODO Auto-generated method stub
