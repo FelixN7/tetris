@@ -76,33 +76,24 @@ public class S extends Piece {
 		
 		piecesCases = mask;
 	}
-	
+
 	private void rot0_1 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
 		Vector<Couple> cases = new Vector<Couple>();
-		cases.add(new Couple(x, y+1));
-		cases.add(new Couple(x+1, y+1));
-		cases.add(new Couple(x+2, y+1));
-		cases.add(new Couple(x+3, y+1));
-		cases.add(new Couple(x, y+2));
+		cases.add(new Couple(x, y));
 		cases.add(new Couple(x+1, y+2));
+		cases.add(new Couple(x+2, y+1));
 		cases.add(new Couple(x+2, y+2));
-		cases.add(new Couple(x+3, y+2));
-		cases.add(new Couple(x, y+3));
-		cases.add(new Couple(x+1, y+3));
-		cases.add(new Couple(x+2, y+3));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=1;
 			rot1(color);
 			//maj de la grille de jeu
-			grid.setCase(x,y+1, new Case(CaseState.USED, color));
-			grid.setCase(x,y+2, new Case(CaseState.USED, color));
-			grid.setCase(x,y+3, new Case(CaseState.USED, color));
+			grid.setCase(x,y, new Case(CaseState.USED, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.USED, color));
 			grid.setCase(x+1,y, new Case(CaseState.EMPTY, color));
 			grid.setCase(x+2,y, new Case(CaseState.EMPTY, color));
-			grid.setCase(x+3,y, new Case(CaseState.EMPTY, color));
 		}
 	}
 
@@ -112,26 +103,17 @@ public class S extends Piece {
 		Vector<Couple> cases = new Vector<Couple>();
 		cases.add(new Couple(x+1, y));
 		cases.add(new Couple(x+2, y));
-		cases.add(new Couple(x+3, y));
-		cases.add(new Couple(x+1, y+1));
 		cases.add(new Couple(x+2, y+1));
-		cases.add(new Couple(x+3, y+1));
-		cases.add(new Couple(x+1, y+2));
 		cases.add(new Couple(x+2, y+2));
-		cases.add(new Couple(x+3, y+2));
-		cases.add(new Couple(x+1, y+3));
-		cases.add(new Couple(x+2, y+3));
 		if(grid.caseFree(cases)){
 			//on peut tourner la piece
 			rotation=0;
 			rot0(color);
 			//maj de la grille de jeu
-			grid.setCase(x,y+1, new Case(CaseState.EMPTY, color));
-			grid.setCase(x,y+2, new Case(CaseState.EMPTY, color));
-			grid.setCase(x,y+3, new Case(CaseState.EMPTY, color));
+			grid.setCase(x,y, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.EMPTY, color));
 			grid.setCase(x+1,y, new Case(CaseState.USED, color));
 			grid.setCase(x+2,y, new Case(CaseState.USED, color));
-			grid.setCase(x+3,y, new Case(CaseState.USED, color));
 		}
 	}
 }
