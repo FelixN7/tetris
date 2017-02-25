@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 
 import tetris.Case;
 import tetris.CaseState;
+import tetris.Game;
 import tetris.Grid;
 import tetris.Piece;
 import tetris.Tetris;
@@ -42,7 +43,7 @@ public class TetrisView {
 	private TetrisControler tControl;
 
 	public TetrisView(Tetris tetris, Container container){
-		tailleLigne = tetris.getGrid().getNbRow();
+		tailleLigne = tetris.getGrid().getNbRow()-3; //-3 correspond aux 3 lignes invisbles au dessus de la grille
 		tailleColonne = tetris.getGrid().getNbCol();
 		this.container = container;
 		cells = new JLabel[tailleLigne][tailleColonne];
@@ -62,8 +63,6 @@ public class TetrisView {
 				}else{
 					cells[i][j].setIcon(images.get(cell.getColorCase()));
 				}
-
-				//cells[i][j].setIcon(images.get(Color.white));
 			}
 		}
 	}
@@ -118,12 +117,11 @@ public class TetrisView {
 				fenetre.setSize(new Dimension(200, 200));
 				Container contenu = fenetre.getContentPane();
 				contenu.removeAll();
-				Grid grid = new Grid(5, 5);
-				final Tetris tetris = new Tetris(grid);
-				final TetrisView tView = new TetrisView(tetris, contenu);
-				Piece p = new T(2, Color.blue, new Couple(2,0));
-				tetris.addPiece(p);
+				Game game = new Game(20, 10);
+				final TetrisView tView = new TetrisView (game.getTetris(), contenu);
 				tView.refresh();
+				fenetre.pack();
+				//game.jouer();
 			}
 
 		});
