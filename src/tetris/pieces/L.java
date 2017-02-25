@@ -54,8 +54,21 @@ public class L extends Piece {
 
 	@Override
 	public void rotationL(Grid grid) {
-		// TODO Auto-generated method stub
-
+		switch (rotation){
+		case 0:
+			rot0_3(grid);
+			break;
+		case 1:
+			rot1_0(grid);
+			break;
+		case 2:
+			rot2_1(grid);
+			break;
+		case 3:
+			rot3_2(grid);
+			break;
+		default:
+		}
 	}
 	
 	private void rot0(Color color) {
@@ -192,7 +205,7 @@ public class L extends Piece {
 		}
 	}
 	
-	//Passer en X-1 ???
+	//Passer en X-1 ??? (fait ici)
 	private void rot3_0 (Grid grid){
 		int x = coord.first();
 		int y = coord.second();
@@ -214,5 +227,86 @@ public class L extends Piece {
 		}
 	}
 	
-	//TODO rotation dans l'autre sens (chiffres décroissants (antihoraires))
+	//Passer en X-1 ??? (pas fait ici)
+	private void rot0_3 (Grid grid){
+		int x = coord.first();
+		int y = coord.second();
+		Vector<Couple> cases = new Vector<Couple>();
+		cases.add(new Couple(x, y+2));
+		cases.add(new Couple(x+1, y+2));
+		if(grid.caseFree(cases)){
+			//on peut tourner la piece
+			rotation=3;
+			rot3(color);
+			//maj de la grille de jeu
+			grid.setCase(x+1,y, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+2,y, new Case(CaseState.EMPTY, color));
+			grid.setCase(x,y+2, new Case(CaseState.USED, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.USED, color));
+		}
+	}
+	
+	private void rot1_0 (Grid grid){
+		int x = coord.first();
+		int y = coord.second();
+		Vector<Couple> cases = new Vector<Couple>();
+		cases.add(new Couple(x, y+1));
+		cases.add(new Couple(x+2, y));
+		cases.add(new Couple(x+2, y+1));
+		cases.add(new Couple(x+2, y+2));
+		if(grid.caseFree(cases)){
+			//on peut tourner la piece
+			rotation=0;
+			rot0(color);
+			//maj de la grille de jeu
+			grid.setCase(x+2,y, new Case(CaseState.USED, color));
+			grid.setCase(x,y+1, new Case(CaseState.USED, color));
+			grid.setCase(x+1,y+1, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.EMPTY, color));
+		}
+	}
+
+	private void rot2_1 (Grid grid){
+		int x = coord.first();
+		int y = coord.second();
+		Vector<Couple> cases = new Vector<Couple>();
+		cases.add(new Couple(x, y));
+		cases.add(new Couple(x, y+2));
+		cases.add(new Couple(x+1, y));
+		cases.add(new Couple(x+1, y+2));
+		if(grid.caseFree(cases)){
+			//on peut tourner la piece
+			rotation=1;
+			rot1(color);
+			//maj de la grille de jeu
+			grid.setCase(x,y, new Case(CaseState.USED, color));
+			grid.setCase(x+1,y, new Case(CaseState.USED, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.USED, color));
+			grid.setCase(x,y+1, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+2,y, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+2,y+1, new Case(CaseState.EMPTY, color));
+		}
+	}
+
+	private void rot3_2 (Grid grid){
+		int x = coord.first();
+		int y = coord.second();
+		Vector<Couple> cases = new Vector<Couple>();
+		cases.add(new Couple(x+1, y+1));
+		cases.add(new Couple(x+2, y));
+		cases.add(new Couple(x+2, y+1));
+		cases.add(new Couple(x+2, y+2));
+		if(grid.caseFree(cases)){
+			//on peut tourner la piece
+			rotation=2;
+			rot2(color);
+			//maj de la grille de jeu
+			grid.setCase(x+1,y+1, new Case(CaseState.USED, color));
+			grid.setCase(x+2,y, new Case(CaseState.USED, color));
+			grid.setCase(x+2,y+1, new Case(CaseState.USED, color));
+			grid.setCase(x,y, new Case(CaseState.EMPTY, color));
+			grid.setCase(x,y+2, new Case(CaseState.EMPTY, color));
+			grid.setCase(x+1,y+2, new Case(CaseState.EMPTY, color));
+		}
+	}
 }
